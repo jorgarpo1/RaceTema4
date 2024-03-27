@@ -179,7 +179,7 @@ cran2 <- cran %>% select(size,r_version,r_arch,r_os,package,version,country,ip_i
 ```
 11. Ordena `cran2` en orden ascendente según la variable `ip_id`.
 ```{r}
-str(cran2)
+cran2
 cran2 %>% arrange(ip_id)
 ```
 12. Ordena `cran2` en orden descendente según la variable `ip_id`.
