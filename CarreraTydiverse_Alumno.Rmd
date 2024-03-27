@@ -292,9 +292,11 @@ cran %>% filter(size_mb > 0.5) %>% arrange(size_mb)
 `cran%>%...+geom_point()`
 
 ```{r}
-
-
-
+by_country <- cran %>% group_by(country)
+by_country %>% summarise(total_descargas = n()) %>%
+  filter(total_descargas >quantile(total_descargas,probs = 0.9))
+  
+ggplot(by_country,aes(x = country, y = total_descargas)) + geom_point()
 
 ```
 **EXTRA** Tal como se indica en el ejercicio, el significado de los códigos usados para la codificación de los paise se pueden obtener de https://dev.maxmind.com/geoip/geoip2/geolite2/. Descarga el fichero **GeoLite2 Country** en formato CSV. Este fichero contiene información en varios idiomas. Usa `GeoLite2-Country-Locations-es.csv` que tiene la información en español. Deseamos poder determinar las descargas por continentes por lo que necesitamos añadir esta información a los datos de las descargas almacenados en `cran`. Procede de la siguiente forma:
